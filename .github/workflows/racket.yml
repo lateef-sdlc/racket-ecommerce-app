@@ -1,0 +1,30 @@
+name: Run Racket E-commerce App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Install Racket
+    - name: Install Racket
+      run: |
+        sudo add-apt-repository ppa:plt/racket
+        sudo apt-get update
+        sudo apt-get install -y racket
+
+    # Run Racket code
+    - name: Run E-commerce App
+      run: |
+        racket ecommerce-app.rkt
