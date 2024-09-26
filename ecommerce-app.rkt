@@ -53,6 +53,32 @@
         '())
       (displayln "Your cart is empty.")))
 
+;; Define a stack to handle operations
+(define stack '())
+
+;; Push an item to the stack
+(define (push-stack! arg)
+  (set! stack (cons arg stack)))
+
+;; Pop an item from the stack
+(define (pop-stack!)
+  (define arg (first stack))
+  (set! stack (rest stack))
+  arg)
+
+;; Handle arithmetic operations on the stack
+(define (handle [arg #f])
+  (cond
+    [(number? arg) (push-stack! arg)]
+    [(equal? arg '+) 
+     (define op-result (+ (pop-stack!) (pop-stack!)))
+     (push-stack! op-result)]
+    [(equal? arg '*) 
+     (define op-result (* (pop-stack!) (pop-stack!)))
+     (push-stack! op-result)]
+    [else (displayln "Unknown operator.")]))
+
+
 ;; Example usage of the e-commerce app
 
 (define cart '())  ; Start with an empty cart
