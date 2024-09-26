@@ -25,7 +25,9 @@
 (define (add-to-cart product-id quantity)
   (define product (find-product-by-id product-catalog product-id))
   (if product
-      (set! cart (append cart (list (list product quantity))))
+      (begin
+        (printf "Adding product ~a to the cart\n" (product-name product))
+        (set! cart (append cart (list (list product quantity)))))
       (begin
         (displayln "Product not found!")
         cart)))
@@ -59,7 +61,7 @@
 ;; Serve the webpage
 (define (start-web-server)
   (define port (or (getenv "PORT") "8080"))  ; Fetch port from environment variable
-  (printf "Starting server on port ~a...\n" port)  ;; Log when the server starts
+  (printf "Starting server on IP 0.0.0.0 and port ~a...\n" port)  ;; Log when the server starts
   (serve/servlet
    (lambda (req)
      (define query (request-bindings req))
