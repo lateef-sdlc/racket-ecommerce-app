@@ -28,7 +28,7 @@ jobs:
     - name: Run Racket E-Commerce App
       run: |
         racket racket-ecommerce-app.rkt &
-        sleep 10  # Increased sleep time to 10 seconds
+        sleep 20  # Increased sleep time to 20 seconds to allow the server to start
 
     # Test the web server using curl
     - name: Test Web Server
