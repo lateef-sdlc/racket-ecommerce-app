@@ -101,7 +101,7 @@
          (form ((method "get"))
            (input ((type "hidden") (name "checkout") (value "1")))
            (input ((type "submit") (value "Checkout")))))))))
-   #:port (string->number port)))
+   #:port (string->number port) #:listen-ip #"0.0.0.0"))  ;; Bind to all network interfaces
 
 ;; Start the web server
 (start-web-server)
