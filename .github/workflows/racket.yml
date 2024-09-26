@@ -1,4 +1,4 @@
-name: Run Racket E-commerce App
+name: Run Racket E-Commerce Web Server
 
 on:
   push:
@@ -24,7 +24,19 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y racket
 
-    # Run Racket code
-    - name: Run E-commerce App
+    # Run the Racket web server
+    - name: Run E-Commerce Web Server
       run: |
-        racket ecommerce-app.rkt
+        racket ecommerce-app.rkt &
+
+    # Test the web server using curl
+    - name: Test Web Server
+      run: |
+        sleep 5  # Wait for server to start
+        curl http://localhost:8080
+        curl "http://localhost:8080?add=1"
+        curl "http://localhost:8080?remove=1"
+        
+    # Keep the server running for 60 seconds (to allow manual inspection if needed)
+    - name: Sleep for 60 seconds
+      run: sleep 60
