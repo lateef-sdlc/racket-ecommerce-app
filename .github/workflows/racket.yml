@@ -33,9 +33,9 @@ jobs:
     # Test the web server using curl
     - name: Test Web Server
       run: |
-        curl http://localhost:8080 | grep "Welcome to the Racket E-Commerce App"
-        curl "http://localhost:8080?add=1"  # Add a product to the cart
-        curl "http://localhost:8080?remove=1"  # Remove a product from the cart
+        curl http://0.0.0.0:8080 | grep "Welcome to the Racket E-Commerce App"
+        curl "http://0.0.0.0:8080?add=1"  # Add a product to the cart
+        curl "http://0.0.0.0:8080?remove=1"  # Remove a product from the cart
 
     # Keep the server running for 60 seconds (optional)
     - name: Sleep for 60 seconds
