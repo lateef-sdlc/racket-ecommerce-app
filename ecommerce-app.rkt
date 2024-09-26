@@ -59,6 +59,7 @@
 ;; Serve the webpage
 (define (start-web-server)
   (define port (or (getenv "PORT") "8080"))  ; Fetch port from environment variable
+  (printf "Starting server on port ~a...\n" port)  ;; Log when the server starts
   (serve/servlet
    (lambda (req)
      (define query (request-bindings req))
